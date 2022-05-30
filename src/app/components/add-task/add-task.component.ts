@@ -30,7 +30,7 @@ export class AddTaskComponent  {
       this.taskService.addTask({
         title: newTitle.value,
         description: newDescription.value,
-        success: false,
+        finished: false,
       })
     }
     //reset the form

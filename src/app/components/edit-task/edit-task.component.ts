@@ -44,11 +44,7 @@ export class EditTaskComponent implements OnInit {
     //validate if the value is not null or undefined
     if(value['title'] && value['description']) {
     //set the values of title and description and pass the id to find and edit the task
-      this.taskService.editTask({
-        title: newTitle.value,
-        description: newDescription.value,
-        success: false,
-      },this.id)
+      this.taskService.editTask(newTitle.value, newDescription.value,this.id)
 
       this.router.navigateByUrl('/list')
     }

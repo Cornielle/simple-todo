@@ -1,8 +1,4 @@
-import { Injectable } from '@angular/core';
 import { Task } from '../models/Task'
-@Injectable({
-  providedIn: 'root'
-})
 export class TaskService {
   tasks: Task[];
   constructor() {
@@ -16,7 +12,7 @@ export class TaskService {
     return this.tasks[id]
   }
   markAsDone(id: number){
-    this.tasks[id].success = !this.tasks[id].success
+    this.tasks[id].finished = !this.tasks[id].finished
   }
   getTasks(){
     this.tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
@@ -28,10 +24,18 @@ export class TaskService {
     localStorage.setItem('tasks', JSON.stringify(this.tasks))
   }
 
-  editTask(task: Task, id: any){
+  editTask(title: string, description: string, id: any){
+    const task: Task = {
+        title,
+        description,
+        finished: false,
+      }
     this.tasks[id] = task
     localStorage.setItem('tasks', JSON.stringify(this.tasks))
+    const taskEdited = JSON.parse(localStorage.getItem('tasks') || '[]');
+    return taskEdited;
   }
+
   deleteTask(id: any){
     this.tasks.splice(id, 1)
     localStorage.setItem('tasks', JSON.stringify(this.tasks))
