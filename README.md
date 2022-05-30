@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # TODO
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.7.
@@ -29,4 +29,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 =======
 # simple-todo
 This is a simple todo made by love (Angular)
->>>>>>> origin/main
+
