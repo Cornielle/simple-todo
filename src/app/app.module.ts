@@ -8,7 +8,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TaskService} from './services/task.service';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { EditTaskComponent } from './components/edit-task/edit-task.component';
-
+import {InputTextModule} from 'primeng/inputtext';
+import {CardModule} from 'primeng/card';
+import {InputTextareaModule} from 'primeng/inputtextarea';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +25,11 @@ import { EditTaskComponent } from './components/edit-task/edit-task.component';
     AppRoutingModule,
     ButtonModule,
     ReactiveFormsModule,
-    DragDropModule
+    DragDropModule,
+    InputTextModule,
+		ButtonModule,
+    InputTextareaModule,
+    CardModule,
   ],
   providers: [TaskService],
   bootstrap: [AppComponent]

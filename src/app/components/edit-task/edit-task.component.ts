@@ -35,18 +35,12 @@ export class EditTaskComponent implements OnInit {
       title: [task.title, Validators.required],
       description: [task.description, Validators.required],
     })
-
   }
 
   editTask(newTitle: HTMLInputElement, newDescription: HTMLTextAreaElement){
     // getting the value
-    const value = this.editTaskForm.value
-    //validate if the value is not null or undefined
-    if(value['title'] && value['description']) {
     //set the values of title and description and pass the id to find and edit the task
-      this.taskService.editTask(newTitle.value, newDescription.value,this.id)
-
+      this.taskService.editTask(newTitle.value, newDescription.value, this.id)
       this.router.navigateByUrl('/list')
-    }
   }
 }

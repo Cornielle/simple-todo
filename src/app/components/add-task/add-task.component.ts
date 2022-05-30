@@ -23,16 +23,8 @@ export class AddTaskComponent  {
   })
 
   addTask(newTitle: HTMLInputElement, newDescription: HTMLTextAreaElement){
-    // getting the value
-    const value = this.addTaskForm.value
     //validate if the value is not null or undefined
-    if(value['title'] && value['description']) {
-      this.taskService.addTask({
-        title: newTitle.value,
-        description: newDescription.value,
-        finished: false,
-      })
-    }
+    this.taskService.addTask(newTitle.value,newDescription.value)
     //reset the form
     this.addTaskForm.reset();
     //setTimeout() was added just because I want to you to see
