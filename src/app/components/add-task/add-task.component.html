@@ -1,0 +1,10 @@
+<form [formGroup]="addTaskForm" (ngSubmit)="addTask(newTitle, newDescription)">
+  <div class="task-container">
+    <p><a  routerLink="/list">Go to Task list</a></p>
+    <label for="task">Name: </label>
+    <input  placeholder="Title" type="text" #newTitle formControlName="title">
+    <textarea placeholder="Description" type="text" #newDescription formControlName="description"></textarea>
+    <button type="submit" pButton [disabled]="!addTaskForm.valid">Add</button>
+    <p>Input state: {{ addTaskForm.value | json}}</p>
+  </div>
+</form>
