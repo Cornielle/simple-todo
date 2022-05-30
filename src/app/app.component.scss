@@ -3,3 +3,9 @@
   width: 100%;
   justify-content: center;
 }
+
+@media (max-width: 480px) {
+  .container {
+    justify-content: inherit;
+  }
+}

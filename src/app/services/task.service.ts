@@ -1,38 +1,62 @@
-import { Injectable } from '@angular/core';
 import { Task } from '../models/Task'
-@Injectable({
-  providedIn: 'root'
-})
 export class TaskService {
   tasks: Task[];
   constructor() {
     this.tasks = []
   }
-  findTask(task: Task){
+  findTaskIndex(task: Task) {
     this.tasks.indexOf(task)
   }
-  findTaskByIndex(id: any){
+  findTaskByIndex(id: any) {
     this.tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
     return this.tasks[id]
   }
-  markAsDone(id: number){
-    this.tasks[id].success = !this.tasks[id].success
+  markAsDone(id: number) {
+    this.tasks[id].finished = !this.tasks[id].finished
   }
-  getTasks(){
+  getTasks() {
     this.tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
     return this.tasks;
   }
 
-  addTask(task: Task){
+  addTask(title: string, description: string) {
+    const canAdd = title !== '' && description !== ''
+    const task: Task = {
+      title,
+      description,
+      finished: false,
+    }
+    //validate if the value is not null or undefined
+    if (!canAdd) {
+      return false
+    }
     this.tasks.push(task)
     localStorage.setItem('tasks', JSON.stringify(this.tasks))
+    return task;
   }
 
-  editTask(task: Task, id: any){
+  editTask(title: string, description: string, id: any) {
+    const canEdit =
+      title !== '' && description !== '' &&
+      (id !== ''
+        && id !== null
+      )
+
+    const task: Task = {
+      title,
+      description,
+      finished: false,
+    }
     this.tasks[id] = task
+    //validate if the value is not null or undefined
+    if (!canEdit) {
+      return false
+    }
     localStorage.setItem('tasks', JSON.stringify(this.tasks))
+    return task;
   }
-  deleteTask(id: any){
+
+  deleteTask(id: any) {
     this.tasks.splice(id, 1)
     localStorage.setItem('tasks', JSON.stringify(this.tasks))
   }

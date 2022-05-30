@@ -14,7 +14,6 @@
   overflow: hidden;
 }
 .box {
-  border-bottom: solid 1px #ccc;
   color: rgba(0, 0, 0, 0.87);
   display: flex;
   flex-direction: column;
@@ -45,10 +44,14 @@
   text-align: center;
   width: 100%;
   border-bottom: solid 1px #ccc;
+  word-wrap: break-word;
+}
+.task-info:last-child {
+  border: none;
 }
 .tasks-announce {
-  font-size: 2em;
-  color: #2d2a2a;
+  font-size: 1.6em;
+  color: #495057;
   padding: 20px;
 }
 .tasks-description {
