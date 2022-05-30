@@ -36,8 +36,7 @@ export class AddTaskComponent  {
     //reset the form
     this.addTaskForm.reset();
     //setTimeout() was added just because I want to you to see
-    //when the form is reset first just 500ms
-    //but I can quit this whenever you want
+    //when the form is reset first just 500ms but I can quit this whenever you want
     setTimeout(()=>{
       this.router.navigateByUrl('/list')
     },500)
