@@ -3,13 +3,13 @@
     <p-card>
       <p><a routerLink="/list">Go to Task list</a></p>
       <div class="p-col-12 p-md-4">
-        <h2 class="add-title">Add a task</h2>
+        <h2>Add a task</h2>
         <div class="p-inputgroup">
-          <input placeholder="Title"  [maxLength]="50" type="text" #newTitle formControlName="title" pInputText>
+          <input placeholder="Title" [maxLength]="50" type="text" #newTitle formControlName="title" pInputText>
         </div>
         <br>
         <textarea placeholder="Description" type="text" #newDescription formControlName="description" [rows]="5"
-          [cols]="46" pInputTextarea [autoResize]=true>
+          [cols]="45" pInputTextarea [autoResize]=true>
         </textarea>
         <br>
       </div>

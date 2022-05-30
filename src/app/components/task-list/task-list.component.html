@@ -3,7 +3,7 @@
     <p>
       <a routerLink="/add">A new task? click here</a>
     </p>
-    <h2 class="add-title">Simple To-do list</h2>
+    <h2>Simple To-do list</h2>
     <div cdkDropList class="col-12 md:col-6 drag-column" (cdkDropListDropped)="drop($event)">
       <div class="box">
         <div *ngIf="tasks.length <=0" class="tasks-announce">What are u waiting for? Make a task</div>
