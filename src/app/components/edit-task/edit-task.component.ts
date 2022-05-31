@@ -8,8 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './edit-task.component.html',
 })
 export class EditTaskComponent implements OnInit {
-
-  id: any = ''
+  id: any = '';
   constructor(
     private fb: FormBuilder,
     public taskService: TaskService,
@@ -22,25 +21,25 @@ export class EditTaskComponent implements OnInit {
   editTaskForm = this.fb.group({
     title: '',
     description: '',
-  })
+  });
   ngOnInit(): void {
     //intends to get the id parameter via link in order to search the specific task
-    this.id = this.route.snapshot.paramMap.get('id')
-    this.getTask(this.id)
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.getTask(this.id);
   }
 
-  getTask(id: any){
-    const task = this.taskService.findTaskByIndex(id)
+  getTask(id: any) {
+    const task = this.taskService.findTaskByIndex(id);
     this.editTaskForm = this.fb.group({
       title: [task.title, Validators.required],
       description: [task.description, Validators.required],
-    })
+    });
   }
 
-  editTask(newTitle: HTMLInputElement, newDescription: HTMLTextAreaElement){
+  editTask(newTitle: HTMLInputElement, newDescription: HTMLTextAreaElement) {
     // getting the value
     //set the values of title and description and pass the id to find and edit the task
-      this.taskService.editTask(newTitle.value, newDescription.value, this.id)
-      this.router.navigateByUrl('/list')
+    this.taskService.editTask(newTitle.value, newDescription.value, this.id);
+    this.router.navigateByUrl('/list');
   }
 }
