@@ -9,7 +9,6 @@ import { Task } from '../../models/Task';
   styleUrls: ['./task-list.component.scss'],
 })
 export class TaskListComponent implements OnInit {
-  //an array of tasks
   tasks: Task[] = [];
   taskAnnounce: string = '';
   draggedTaskIndex: number = 0;
@@ -21,17 +20,15 @@ export class TaskListComponent implements OnInit {
     this.tasks = tasks;
   }
 
-  drop(event: CdkDragDrop<string[]>) {
-    /*moveItemInArray manage the nodes and the collection passing it the tasks
-    as first paramether, the previousIndex and currentIndex throught the event*/
+  public drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.tasks, event.previousIndex, event.currentIndex);
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
   }
-  markAsDone(task: Task) {
+  public markAsDone(task: Task) {
     const index = this.tasks.indexOf(task);
     this.TaskService.markAsDone(index);
   }
-  deleteTask(task: Task) {
+  public deleteTask(task: Task) {
     const index = this.tasks.indexOf(task);
     this.TaskService.deleteTask(index);
   }

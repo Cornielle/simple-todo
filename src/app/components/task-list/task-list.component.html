@@ -18,7 +18,7 @@
           What are u waiting for? Make a task
         </div>
         <div
-          *ngFor="let task of tasks; let i = index"
+          *ngFor="let task of tasks; let ind = index"
           cdkDrag
           class="task-info"
         >
@@ -35,7 +35,7 @@
             {{ task.description }}
           </div>
           <div class="actions">
-            <a [routerLink]="['/edit', i]">
+            <a [routerLink]="['/edit', ind]">
               <i *ngIf="!task.finished" class="pi pi-pencil pencil">
                 {{ " " }}
               </i>

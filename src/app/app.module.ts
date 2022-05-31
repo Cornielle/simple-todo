@@ -12,14 +12,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { CardModule } from 'primeng/card';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 @NgModule({
-  declarations: [
-    AppComponent,
-    /*this routing which is an array type specified component's
-      routes in order to maintain all the declarations
-      in the routing modulea and maintain app.module clean */
-    routingComponents,
-    EditTaskComponent,
-  ],
+  declarations: [AppComponent, routingComponents, EditTaskComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
