@@ -1,21 +1,50 @@
-<form [formGroup]="editTaskForm" (ngSubmit)="editTask(newTitle, newDescription)">
+<form
+  [formGroup]="editTaskForm"
+  (ngSubmit)="editTask(newTitle, newDescription)"
+>
   <div class="task-container">
     <p-card>
-      <p><a routerLink="/list">Go to Task list</a></p>
+      <button
+        pButton
+        routerLink="/list"
+        type="submit"
+        label="Go to task list"
+        class="p-button-sm"
+      ></button>
       <div class="p-col-12 p-md-4">
         <h2>Edit a task</h2>
         <div class="p-inputgroup">
-          <input placeholder="Title" [maxLength]="50" type="text" #newTitle formControlName="title" pInputText>
+          <input
+            placeholder="Title"
+            [maxLength]="50"
+            type="text"
+            #newTitle
+            formControlName="title"
+            pInputText
+          />
         </div>
-        <br>
-        <textarea placeholder="Description" type="text" #newDescription formControlName="description" [rows]="5"
-          [cols]="45" pInputTextarea [autoResize]=true>
+        <br />
+        <textarea
+          type="text"
+          formControlName="description"
+          placeholder="Description"
+          [rows]="5"
+          [cols]="45"
+          pInputTextarea
+          #newDescription
+          [autoResize]="true"
+        >
         </textarea>
-        <br>
+        <br />
       </div>
-      <button pButton type="submit" label="Edit task" icon="pi pi-check" [disabled]="!editTaskForm.valid"
-        class="p-button-sm"></button>
+      <button
+        pButton
+        label="Edit task"
+        icon="pi pi-check"
+        class="p-button-sm"
+        type="submit"
+        [disabled]="!editTaskForm.valid"
+      ></button>
     </p-card>
-    <span>Input state: {{ editTaskForm.value | json}}</span>
   </div>
 </form>

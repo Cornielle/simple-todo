@@ -8,29 +8,25 @@ import { TaskService } from '../../services/task.service';
   selector: 'app-add-task',
   templateUrl: './add-task.component.html',
 })
-
-export class AddTaskComponent  {
-  constructor(
-    private fb: FormBuilder, public taskService: TaskService,
-    //this router is differen than
-    //the previous one, and at the moment is used to redirect to list whenever is needed
-    private router: Router
-  ) {}
-
+export class AddTaskComponent {
   addTaskForm = this.fb.group({
     title: ['', Validators.required],
     description: ['', Validators.required],
-  })
+  });
 
-  addTask(newTitle: HTMLInputElement, newDescription: HTMLTextAreaElement){
-    //validate if the value is not null or undefined
-    this.taskService.addTask(newTitle.value,newDescription.value)
-    //reset the form
+  constructor(
+    public taskService: TaskService,
+    private fb: FormBuilder,
+    private router: Router
+  ) {}
+
+  public addTask(
+    newTitle: HTMLInputElement,
+    newDescription: HTMLTextAreaElement
+  ) {
+    this.taskService.addTask(newTitle.value, newDescription.value);
+
     this.addTaskForm.reset();
-    //setTimeout() was added just because I want to you to see
-    //when the form is reset first just 500ms but I can quit this whenever you want
-    setTimeout(()=>{
-      this.router.navigateByUrl('/list')
-    },500)
+    this.router.navigateByUrl('/list');
   }
 }

@@ -1,27 +1,51 @@
 <div class="grid">
   <p-card>
-    <p>
-      <a routerLink="/add">A new task? click here</a>
-    </p>
+    <button
+      pButton
+      label="Create a task"
+      class="p-button-sm"
+      routerLink="/add"
+      type="submit"
+    ></button>
     <h2>Simple To-do list</h2>
-    <div cdkDropList class="col-12 md:col-6 drag-column" (cdkDropListDropped)="drop($event)">
+    <div
+      class="col-12 md:col-6 drag-column"
+      cdkDropList
+      (cdkDropListDropped)="drop($event)"
+    >
       <div class="box">
-        <div *ngIf="tasks.length <=0" class="tasks-announce">What are u waiting for? Make a task</div>
-        <div *ngFor="let task of tasks; let i = index" cdkDrag class="task-info">
-          <div [ngClass]="{'tasks-title': !task.finished,
-              'tasks-title-finished': task.finished}" (click)="markAsDone(task)">
-            {{task.title}} <i *ngIf="task.finished" class="pi pi-check"></i>
+        <div *ngIf="tasks.length <= 0" class="tasks-announce">
+          What are u waiting for? Make a task
+        </div>
+        <div
+          *ngFor="let task of tasks; let ind = index"
+          cdkDrag
+          class="task-info"
+        >
+          <div
+            [ngClass]="{
+              'tasks-title': !task.finished,
+              'tasks-title-finished': task.finished
+            }"
+            (click)="markAsDone(task)"
+          >
+            {{ task.title }} <i *ngIf="task.finished" class="pi pi-check"></i>
           </div>
           <div class="tasks-description">
-            {{task.description}}
+            {{ task.description }}
           </div>
           <div class="actions">
-            <a [routerLink]="['/edit', i]">
-              <i *ngIf="!task.finished" class="pi pi-pencil pencil"> {{' '}}
+            <a [routerLink]="['/edit', ind]">
+              <i *ngIf="!task.finished" class="pi pi-pencil pencil">
+                {{ " " }}
               </i>
             </a>
             <a>
-              <i *ngIf="!task.finished" (click)="deleteTask(task)" class="pi pi-trash">
+              <i
+                *ngIf="!task.finished"
+                (click)="deleteTask(task)"
+                class="pi pi-trash"
+              >
               </i>
             </a>
           </div>

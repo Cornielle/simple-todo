@@ -1,46 +1,45 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { TaskService } from '../../services/task.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { TaskService } from '../../services/task.service';
 @Component({
   selector: 'app-edit-task',
   templateUrl: './edit-task.component.html',
 })
 export class EditTaskComponent implements OnInit {
+  public id: string | null = '';
 
-  id: any = ''
+  public editTaskForm = this.fb.group({
+    title: '',
+    description: '',
+  });
+
   constructor(
-    private fb: FormBuilder,
     public taskService: TaskService,
+    private fb: FormBuilder,
     private route: ActivatedRoute,
-    //this router is differen than
-    //the previous one, and at the moment is used to redirect to list whenever is needed
     private router: Router
   ) {}
 
-  editTaskForm = this.fb.group({
-    title: '',
-    description: '',
-  })
   ngOnInit(): void {
-    //intends to get the id parameter via link in order to search the specific task
-    this.id = this.route.snapshot.paramMap.get('id')
-    this.getTask(this.id)
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.getTask(this.id);
   }
 
-  getTask(id: any){
-    const task = this.taskService.findTaskByIndex(id)
+  public getTask(id: string | null = '') {
+    const task = this.taskService.findTaskByIndex(id);
     this.editTaskForm = this.fb.group({
       title: [task.title, Validators.required],
       description: [task.description, Validators.required],
-    })
+    });
   }
 
-  editTask(newTitle: HTMLInputElement, newDescription: HTMLTextAreaElement){
-    // getting the value
-    //set the values of title and description and pass the id to find and edit the task
-      this.taskService.editTask(newTitle.value, newDescription.value, this.id)
-      this.router.navigateByUrl('/list')
+  public editTask(
+    newTitle: HTMLInputElement,
+    newDescription: HTMLTextAreaElement
+  ) {
+    this.taskService.editTask(newTitle.value, newDescription.value, this.id);
+    this.router.navigateByUrl('/list');
   }
 }
